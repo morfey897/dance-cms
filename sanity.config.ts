@@ -1,7 +1,7 @@
-import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemas'
+import { SchemaTypeDefinition, defineConfig } from 'sanity'
+import { deskTool } from 'sanity/desk'
+import { visionTool } from '@sanity/vision'
+import { deskStructure, schemaTypes } from './src'
 
 export default defineConfig({
   name: 'default',
@@ -10,9 +10,12 @@ export default defineConfig({
   projectId: '2wnia9h8',
   dataset: 'production',
 
-  plugins: [deskTool(), visionTool()],
+  plugins: [
+    visionTool(),
+    deskTool({ structure: deskStructure, })
+  ],
 
   schema: {
-    types: schemaTypes,
+    types: schemaTypes.filter(({ type }) => type != 'divider') as SchemaTypeDefinition[],
   },
 })
