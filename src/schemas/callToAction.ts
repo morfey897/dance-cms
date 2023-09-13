@@ -26,9 +26,9 @@ export default defineType({
       name: 'externalUrl',
       title: 'External url',
       type: 'url',
-      validation: Rule => Rule.uri({
+      validation: Rule => [Rule.uri({
         scheme: ['http', 'https', 'mailto', 'tel']
-      })
+      })]
     }),
   ],
 

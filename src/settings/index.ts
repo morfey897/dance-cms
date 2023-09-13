@@ -22,10 +22,16 @@ export default defineType({
       type: 'text',
     }),
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'reference',
-      to: { type: 'asset' }
+      name: 'images',
+      title: 'Images',
+      type: 'array',
+      of: [{
+        type: 'reference',
+        to: { type: 'asset' },
+        options: {
+          filter: filterUnique
+        }
+      }],
     }),
     defineField({
       name: 'phones',
@@ -52,15 +58,6 @@ export default defineType({
       title: 'Address',
       type: 'reference',
       to: [{ type: 'address' }],
-    }),
-    defineField({
-      name: 'langs',
-      title: 'Langs',
-      type: "array",
-      of: [{ type: "string" }],
-      options: {
-        layout: "tags"
-      }
     }),
   ]
 })

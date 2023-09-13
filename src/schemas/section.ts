@@ -14,6 +14,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'menuName',
+      title: 'Menu',
+      type: 'string',
+    }),
+    defineField({
       name: 'headline',
       title: 'Headline',
       type: 'string',
@@ -23,6 +28,12 @@ export default defineType({
       title: 'Anchor',
       type: "reference",
       to: { type: 'tag' },
+    }),
+    defineField({
+      name: 'wrapper',
+      title: 'Wrapper',
+      type: "reference",
+      to: { type: 'wrapper' },
     }),
     defineField({
       name: 'images',
@@ -48,8 +59,8 @@ export default defineType({
       to: { type: 'callToAction' },
     }),
     defineField({
-      name: 'sections',
-      title: 'Sections',
+      name: 'divisions',
+      title: 'Divisions',
       type: 'array',
       of: [{
         type: 'reference', to: { type: 'direction' }, options: {

@@ -23,7 +23,7 @@ export default defineType({
           { value: 'ticktok', title: 'TickTok' },
           { value: 'telegram', title: 'Telegram' },
           { value: 'viber', title: 'Viber' },
-          { value: 'whatsup', title: 'WhatsUp' },
+          { value: 'whatsapp', title: 'WhatsApp' },
         ]
       },
       validation: Rule => Rule.required(),

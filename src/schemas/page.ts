@@ -62,8 +62,8 @@ export default defineType({
       group: 'content'
     }),
     defineField({
-      name: 'seoDescription',
-      title: 'SEO description',
+      name: 'description',
+      title: 'Description',
       type: 'text',
       group: 'seo',
       fieldset: 'seo',
