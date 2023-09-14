@@ -14,12 +14,12 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'localeText',
     }),
     defineField({
       name: 'images',
@@ -59,5 +59,9 @@ export default defineType({
       type: 'reference',
       to: [{ type: 'address' }],
     }),
-  ]
+  ],
+
+  options: {
+    languageFilter: true,
+  },
 })

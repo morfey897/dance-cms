@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { DocumentTextIcon } from '@sanity/icons'
 import { filterUnique } from '../utils/unique';
+import i18nConfig from '../../i18n.config';
 
 export default defineType({
   name: 'direction',
@@ -16,7 +17,7 @@ export default defineType({
     defineField({
       name: 'headline',
       title: 'Headline',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'tags',
@@ -41,7 +42,7 @@ export default defineType({
     defineField({
       name: 'body',
       title: 'Body',
-      type: 'blockContent',
+      type: 'localeBlockContent',
     }),
     defineField({
       name: 'callToAction',
@@ -53,7 +54,7 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'headline',
+      subtitle: `headline.${i18nConfig.defaultLocale}`,
       image: 'images.0.image',
     },
     prepare({ title, subtitle, image }) {
@@ -63,5 +64,9 @@ export default defineType({
         media: image,
       }
     },
+  },
+
+  options: {
+    languageFilter: true,
   },
 })

@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { JoystickIcon } from '@sanity/icons';
+import i18nConfig from '../../i18n.config';
 
 export default defineType({
   name: 'callToAction',
@@ -10,7 +11,7 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -34,7 +35,7 @@ export default defineType({
 
   preview: {
     select: {
-      title: 'title',
+      title: `title.${i18nConfig.defaultLocale}`,
       externalUrl: 'externalUrl',
       internalSlug: 'internalUrl.page.slug.current',
       internalAnchor: 'internalUrl.anchor.tag',
@@ -45,5 +46,9 @@ export default defineType({
         subtitle: ((internalSlug || internalAnchor) && `${[internalSlug || "/", internalAnchor].filter(Boolean).join("#")}`) || externalUrl || "undefined"
       }
     },
+  },
+
+  options: {
+    languageFilter: true,
   },
 })

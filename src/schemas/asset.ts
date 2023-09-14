@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { ImageIcon } from '@sanity/icons'
 import { filterUnique } from '../utils/unique'
+import i18nConfig from '../../i18n.config'
 
 export default defineType({
   name: 'asset',
@@ -11,7 +12,7 @@ export default defineType({
     defineField({
       name: 'caption',
       title: 'Caption',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'image',
@@ -24,7 +25,7 @@ export default defineType({
     defineField({
       name: 'alt',
       title: 'Alt',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.max(120).warning(`A alt shouldn't be more than 120 characters.`),
     }),
     defineField({
@@ -40,7 +41,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'caption',
+      title: `caption.${i18nConfig.defaultLocale}`,
       media: 'image.asset',
       tag0: 'tags.0.tag',
       tag1: 'tags.1.tag',
@@ -53,5 +54,8 @@ export default defineType({
         subtitle: [tag0, tag1, tag2].filter((a: string) => !!a).map((a: string) => `#${a}`).join(','),
       }
     }
-  }
+  },
+  options: {
+    languageFilter: true,
+  },
 })

@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { PinIcon } from '@sanity/icons'
-
+import i18nConfig from '../../i18n.config';
 
 export default defineType({
   name: 'address',
@@ -17,27 +17,27 @@ export default defineType({
     defineField({
       name: 'country',
       title: 'Country',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'city',
       title: 'City',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'street',
       title: 'Street',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'building',
       title: 'Building',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'district',
       title: 'District',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'geo',
@@ -48,10 +48,10 @@ export default defineType({
   preview: {
     select: {
       place: 'place',
-      country: 'country',
-      city: 'city',
-      street: 'street',
-      building: 'building',
+      country: `country.${i18nConfig.defaultLocale}`,
+      city: `city.${i18nConfig.defaultLocale}`,
+      street: `street.${i18nConfig.defaultLocale}`,
+      building: `building.${i18nConfig.defaultLocale}`,
     },
     prepare: ({ place, country, city, street, building }) => {
       return {
@@ -59,5 +59,9 @@ export default defineType({
         subtitle: [building, street, city, country].filter(a => !!a).join(" ")
       }
     }
-  }
+  },
+
+  options: {
+    languageFilter: true,
+  },
 });

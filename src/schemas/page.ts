@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { DashboardIcon } from '@sanity/icons'
 import { filterUnique } from '../utils/unique';
+import i18nConfig from '../../i18n.config';
 
 export default defineType({
   name: 'page',
@@ -28,7 +29,7 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localeString',
       group: 'content'
     }),
     defineField({
@@ -64,21 +65,20 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
-      group: 'seo',
-      fieldset: 'seo',
+      type: 'localeText',
+      group: 'content',
     }),
     defineField({
       name: 'ogTitle',
       title: 'OG title',
-      type: 'string',
+      type: 'localeString',
       group: 'seo',
       fieldset: 'seo',
     }),
     defineField({
       name: 'ogDescription',
       title: 'OG description',
-      type: 'text',
+      type: 'localeText',
       group: 'seo',
       fieldset: 'seo',
     }),
@@ -93,7 +93,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: `title.${i18nConfig.defaultLocale}`,
       slug: 'slug',
       ogImage: 'ogImage.image.asset',
     },
@@ -104,5 +104,8 @@ export default defineType({
         subtitle: `${slug?.current}`
       }
     },
+  },
+  options: {
+    languageFilter: true,
   },
 })
