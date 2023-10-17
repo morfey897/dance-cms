@@ -64,7 +64,9 @@ export default defineType({
       title: 'Divisions',
       type: 'array',
       of: [{
-        type: 'reference', to: { type: 'direction' }, options: {
+        type: 'reference',
+        to: [{ type: 'direction' }, { type: 'price' }],
+        options: {
           filter: filterUnique
         }
       }]

@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { TagIcon } from '@sanity/icons'
+import i18nConfig from '../../i18n.config';
 
 export default defineType({
   name: 'tag',
@@ -16,13 +17,13 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'string',
+      type: 'localeString',
     })
   ],
   preview: {
     select: {
       tag: 'tag',
-      description: 'description',
+      description: `description.${i18nConfig.defaultLocale}`,
     },
     prepare: ({ description, tag }) => {
       return {
@@ -30,5 +31,8 @@ export default defineType({
         subtitle: description,
       }
     }
-  }
+  },
+  options: {
+    languageFilter: true,
+  },
 })
