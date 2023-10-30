@@ -10,11 +10,6 @@ export default defineType({
   icon: ImageIcon,
   fields: [
     defineField({
-      name: 'caption',
-      title: 'Caption',
-      type: 'localeString',
-    }),
-    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -25,8 +20,7 @@ export default defineType({
     defineField({
       name: 'alt',
       title: 'Alt',
-      type: 'localeString',
-      validation: Rule => Rule.max(120).warning(`A alt shouldn't be more than 120 characters.`),
+      type: 'localeString'
     }),
     defineField({
       name: 'tags',
@@ -41,7 +35,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: `caption.${i18nConfig.defaultLocale}`,
+      title: `alt.${i18nConfig.defaultLocale}`,
       media: 'image.asset',
       tag0: 'tags.0.tag',
       tag1: 'tags.1.tag',
