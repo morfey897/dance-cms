@@ -8,6 +8,12 @@ export default defineType({
   title: 'Section',
   type: 'document',
   icon: ComponentIcon,
+  groups: [
+    {
+      name: 'divisions',
+      title: 'Divisions',
+    },
+  ],
   fields: [
     defineField({
       name: 'name',
@@ -44,7 +50,7 @@ export default defineType({
         type: 'reference',
         to: { type: 'asset' },
         options: {
-          filter: filterUnique
+          filter: filterUnique()
         }
       }],
     }),
@@ -60,14 +66,32 @@ export default defineType({
       to: { type: 'callToAction' },
     }),
     defineField({
+      name: 'filterDivisions',
+      title: 'Filter divisions',
+      type: 'string',
+      group: 'divisions',
+      options: {
+        list: [
+          {
+            title: '---', value: '',
+          }, {
+            title: 'Price', value: 'price',
+          }, {
+            title: 'Direction', value: 'direction',
+          }
+        ],
+      }
+    }),
+    defineField({
       name: 'divisions',
       title: 'Divisions',
       type: 'array',
+      group: 'divisions',
       of: [{
         type: 'reference',
         to: [{ type: 'direction' }, { type: 'price' }],
         options: {
-          filter: filterUnique
+          filter: filterUnique('filterDivisions')
         }
       }]
     })

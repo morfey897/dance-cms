@@ -29,7 +29,7 @@ export default defineType({
         type: 'reference',
         to: { type: 'asset' },
         options: {
-          filter: filterUnique
+          filter: filterUnique()
         }
       }],
     }),
@@ -39,7 +39,7 @@ export default defineType({
       type: 'array',
       of: [{
         type: 'reference', to: { type: 'phone' }, options: {
-          filter: filterUnique
+          filter: filterUnique()
         }
       }],
     }),

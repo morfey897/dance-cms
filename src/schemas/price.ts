@@ -31,7 +31,7 @@ export default defineType({
       type: 'array',
       of: [{
         type: 'reference', to: { type: 'tag' }, options: {
-          filter: filterUnique
+          filter: filterUnique()
         }
       }],
     }),
@@ -78,7 +78,7 @@ export default defineType({
       group: 'money',
       of: [{
         type: 'reference', to: { type: 'tag' }, options: {
-          filter: filterUnique
+          filter: filterUnique()
         }
       }],
     }),

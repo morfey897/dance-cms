@@ -57,7 +57,7 @@ export default defineType({
       type: 'array',
       of: [{
         type: 'reference', to: { type: 'section' }, options: {
-          filter: filterUnique
+          filter: filterUnique()
         }
       }],
       group: 'content'
